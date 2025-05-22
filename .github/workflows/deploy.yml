@@ -1,0 +1,35 @@
+name: Deploy React (Vite) to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Vite App
+        run: npm run build
+
+      - name: Deploy with rsync over SSH
+        uses: burnett01/rsync-deployments@v6.0.0
+        with:
+          switches: -avz --delete
+          path: dist/
+          remote_path: /var/webapps/finvise-frontend/
+          remote_host: 16.79.30.150
+          remote_user: ubuntu
+          remote_key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
