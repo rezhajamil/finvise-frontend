@@ -36,9 +36,9 @@ jobs:
 
       - name: Sync dist/ to VPS
         run: |
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa" \
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/github-actions
+          chmod 600 ~/.ssh/github-actions
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/github-actions" \
             dist/ ubuntu@16.79.30.150:/var/webapps/finvise-frontend/dist/
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
