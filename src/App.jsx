@@ -7,7 +7,7 @@ import {
 import Login from "./pages/Login";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
-import useAuthStore from "./store/useAuthstore";
+import useAuthStore from "./store/useAuthStore";
 import { useEffect } from "react";
 function App() {
 	const { token, logout, fetchUser } = useAuthStore();
