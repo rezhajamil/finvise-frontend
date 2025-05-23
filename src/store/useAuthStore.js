@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import API from "../api/axios";
+import { history } from "../utils/redirect";
 
 const useAuthStore = create((set) => ({
 	token: localStorage.getItem("token") || null,
@@ -13,6 +14,7 @@ const useAuthStore = create((set) => ({
 	logout: () => {
 		localStorage.removeItem("token");
 		set({ token: null, user: null });
+		history.push("/login");
 	},
 
 	setUser: (user) => set({ user }),

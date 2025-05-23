@@ -9,6 +9,8 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import useAuthStore from "./store/useAuthStore";
 import { useEffect } from "react";
+import Register from "./pages/Register";
+import { history } from "./utils/redirect";
 function App() {
 	const { token, logout, fetchUser } = useAuthStore();
 
@@ -19,7 +21,7 @@ function App() {
 	}, [token]);
 
 	return (
-		<Router>
+		<Router history={history}>
 			{token && (
 				<div style={{ textAlign: "right", padding: "1rem" }}>
 					<button onClick={logout}>Logout</button>
@@ -27,14 +29,8 @@ function App() {
 			)}
 			<Routes>
 				<Route path="/login" element={<Login />} />
-				<Route
-					path="/products"
-					element={
-						<RequireAuth>
-							<Products />
-						</RequireAuth>
-					}
-				/>
+				<Route path="/register" element={<Register />} />
+				<Route path="/products" element={<Products />} />
 				<Route
 					path="/products/:id"
 					element={

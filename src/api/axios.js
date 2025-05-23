@@ -19,7 +19,7 @@ API.interceptors.response.use(
 		if (error.response && error.response.status === 401) {
 			const auth = useAuthStore.getState();
 			auth.logout();
-			window.location.href = "/login";
+			// window.location.href = "/login";
 		}
 		return Promise.reject(error);
 	}
