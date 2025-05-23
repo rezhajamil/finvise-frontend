@@ -16,7 +16,6 @@ const useProductStore = create((set, get) => ({
 
 		try {
 			const res = await API.get("/products", { params });
-			console.log({ res });
 			set((state) => ({
 				products: {
 					...state.products,

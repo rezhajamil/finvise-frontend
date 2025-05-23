@@ -10,6 +10,7 @@ import Button from "../components/Button";
 import ButtonLink from "../components/ButtonLink";
 import InputText from "../components/InputText";
 import InputPassword from "../components/InputPassword";
+import Navbar from "../parts/Navbar";
 export default function Register() {
 	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
@@ -67,6 +68,7 @@ export default function Register() {
 				id="signup"
 				className="bg-[#EFF3FA] min-h-screen pt-[30px] pb-[50px] flex flex-col"
 			>
+				<Navbar />
 				<div className="container max-w-[1130px] mx-auto flex flex-1 items-center justify-center py-5 px-2">
 					<form
 						onSubmit={handleLogin}
