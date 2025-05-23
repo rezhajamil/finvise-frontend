@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import Register from "./pages/Register";
 import { history } from "./utils/redirect";
 function App() {
-	const { token, logout, fetchUser } = useAuthStore();
+	const { token, fetchUser } = useAuthStore();
 
 	useEffect(() => {
 		if (token) {
@@ -22,11 +22,11 @@ function App() {
 
 	return (
 		<Router history={history}>
-			{token && (
+			{/* {token && (
 				<div style={{ textAlign: "right", padding: "1rem" }}>
 					<button onClick={logout}>Logout</button>
 				</div>
-			)}
+			)} */}
 			<Routes>
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
