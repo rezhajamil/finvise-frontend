@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import API from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
@@ -40,7 +40,7 @@ export default function Login() {
 		<>
 			<div
 				id="signin"
-				className="bg-[#EFF3FA] min-h-screen pt-[30px] pb-[50px] flex flex-col"
+				className="bg-[#EFF3FA] min-h-screen pt-[30px] pb-[50px] flex flex-col px-4"
 			>
 				<Navbar />
 				<div className="container max-w-[1130px] mx-auto flex flex-1 items-center justify-center py-5 px-2">
