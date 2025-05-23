@@ -18,6 +18,22 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Vite App
+        run: npm run build
+
+      - name: Clear previous build on VPS (only dist/)
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 16.79.30.150
+          username: ubuntu
+          key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          script: |
+            rm -rf /var/webapps/finvise-frontend/dist/*
+            mkdir -p /var/webapps/finvise-frontend/dist
+
       - name: Git pull on server
         uses: appleboy/ssh-action@v1
         with:
@@ -27,5 +43,13 @@ jobs:
           script: |
             cd /var/webapps/finvise-frontend
             git pull origin main
-            sudo npm install -y
-            sudo npm run build
+
+      - name: Sync dist/ to VPS
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key" \
+            dist/ ubuntu@16.79.30.150:/var/webapps/finvise-frontend/dist/
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
