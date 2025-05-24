@@ -5,6 +5,7 @@ import Navbar from "../parts/Navbar";
 import ImageNotFound from "../assets/image-not-found.png";
 import useProductStore from "../store/useProductStore";
 import ProductCard from "../components/ProductCard";
+import { formatPrice } from "../utils/format";
 
 export default function ProductDetail() {
 	const { id } = useParams();
@@ -18,7 +19,7 @@ export default function ProductDetail() {
 		API.get(`/products/${id}`)
 			.then((res) => setProduct(res.data))
 			.catch((err) => {
-				setError("Product not found or unauthorized.");
+				setError("Product not found.");
 			});
 	}, [id]);
 
@@ -90,7 +91,7 @@ export default function ProductDetail() {
 										Brand New
 									</p>
 									<p className="font-bold text-2xl md:text-3xl text-[#0D5CD7] transition-all group-hover:text-white ">
-										Rp 56.500.000
+										{formatPrice(product.price)}
 									</p>
 								</div>
 							</div>
@@ -111,6 +112,8 @@ export default function ProductDetail() {
 								{Object.values(products)
 									.flat()
 									.filter((p) => p.id !== product.id)
+									.sort(() => Math.random() - 0.5)
+									.slice(0, recommendationCount)
 									.map((product) => (
 										<ProductCard key={product.id} product={product} />
 									))}
