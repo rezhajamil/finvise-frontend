@@ -22,6 +22,8 @@ const useProductStore = create((set, get) => ({
 					[key]: res.data,
 				},
 			}));
+
+			console.log(get().products);
 		} catch (err) {
 			set({ error: "Failed to fetch products" });
 		} finally {

@@ -55,7 +55,7 @@ export default function Register() {
 				if (errors.email) setEmailError(errors.email[0]);
 				if (errors.password) setPasswordError(errors.password[0]);
 			} else {
-				setError("Terjadi kesalahan. Silakan coba lagi.");
+				setError("Sign up failed. Please try again.");
 			}
 		}
 	};

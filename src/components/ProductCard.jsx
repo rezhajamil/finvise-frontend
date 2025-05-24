@@ -11,6 +11,7 @@ const ProductCard = ({ product }) => {
 			to={`/products/${product.id}`}
 			key={product.id}
 			className="product-card"
+			data-testid="product-card"
 		>
 			<div className="bg-white flex flex-col gap-[24px] overflow-hidden p-5 rounded-[20px] ring-1 ring-[#E5E5E5] h-64 hover:ring-2 hover:ring-[#FFC736] transition-all duration-300 w-full">
 				<div className="w-full h-[90px] flex shrink-0 items-center justify-center overflow-hidden">
