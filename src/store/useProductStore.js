@@ -23,7 +23,6 @@ const useProductStore = create((set, get) => ({
 				},
 			}));
 		} catch (err) {
-			console.log(err.response.data.message);
 			set({ error: "Failed to fetch products" });
 		} finally {
 			set({ loading: false });

@@ -20,8 +20,6 @@ export default function Products() {
 	const [search, setSearch] = useState(searchParams.get("search") || "");
 	const [priceMin, setPriceMin] = useState(searchParams.get("price_min") || "");
 	const [priceMax, setPriceMax] = useState(searchParams.get("price_max") || "");
-	const [isPriceRangeOpen, setIsPriceRangeOpen] = useState(true);
-	const [isSortByOpen, setIsSortByOpen] = useState(true);
 
 	const params = {
 		price_min: priceMin,
@@ -72,7 +70,6 @@ export default function Products() {
 
 	useEffect(() => {
 		fetchProducts(params);
-		console.log({ key });
 	}, [key]);
 
 	return (
@@ -99,15 +96,12 @@ export default function Products() {
 					</div>
 					<div
 						id="catalog"
-						className="container max-w-[1130px] mx-auto flex flex-col md:flex-row gap-[30px] mt-6 sm:mt-[50px] pb-[100px] "
+						className="container max-w-[1130px] mx-auto flex flex-col  md:flex-row gap-[30px] mt-6 sm:mt-[50px] pb-[100px] "
 					>
 						<form
 							action=""
-							className="flex flex-1 flex-col bg-white py-4 px-4 sm:p-8 gap-5 h-fit border border-[#E5E5E5] rounded-[30px]"
+							className="flex flex-1 flex-col bg-white py-4 px-4 md:p-8 sm:p-6 gap-5 h-fit border border-[#E5E5E5] rounded-[30px]"
 						>
-							{/* <h2 className="font-bold text-lg sm:text-2xl leading-[34px]">
-								Filters
-							</h2> */}
 							<Collapsible title={"Filters"}>
 								<p className="font-semibold text-sm sm:text-base leading-[22px]">
 									Price Range
@@ -137,7 +131,7 @@ export default function Products() {
 										value="name_asc"
 										checked={sortBy === "name" && sortOrder === "asc"}
 										onChange={(e) => handleSortChange(e.target.value)}
-										className="w-6 h-6 flex shrink-0 appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-md checked:bg-[#0D5CD7] ring-1 ring-[#0D5CD7]"
+										className="w-6 h-6 flex shrink-0 cursor-pointer appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-md checked:bg-[#0D5CD7] ring-1 ring-[#0D5CD7]"
 									/>
 									<span>Name : A - Z</span>
 								</label>
@@ -148,7 +142,7 @@ export default function Products() {
 										value="name_desc"
 										checked={sortBy === "name" && sortOrder === "desc"}
 										onChange={(e) => handleSortChange(e.target.value)}
-										className="w-6 h-6 flex shrink-0 appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-md checked:bg-[#0D5CD7] ring-1 ring-[#0D5CD7]"
+										className="w-6 h-6 flex shrink-0 cursor-pointer appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-md checked:bg-[#0D5CD7] ring-1 ring-[#0D5CD7]"
 									/>
 									<span>Name : Z - A</span>
 								</label>
@@ -159,7 +153,7 @@ export default function Products() {
 										value="price_asc"
 										checked={sortBy === "price" && sortOrder === "asc"}
 										onChange={(e) => handleSortChange(e.target.value)}
-										className="w-6 h-6 flex shrink-0 appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-md checked:bg-[#0D5CD7] ring-1 ring-[#0D5CD7]"
+										className="w-6 h-6 flex shrink-0 cursor-pointer appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-md checked:bg-[#0D5CD7] ring-1 ring-[#0D5CD7]"
 									/>
 									<span>Price : Low to High</span>
 								</label>
@@ -170,13 +164,13 @@ export default function Products() {
 										value="price_desc"
 										checked={sortBy === "price" && sortOrder === "desc"}
 										onChange={(e) => handleSortChange(e.target.value)}
-										className="w-6 h-6 flex shrink-0 appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-md checked:bg-[#0D5CD7] ring-1 ring-[#0D5CD7]"
+										className="w-6 h-6 flex shrink-0 cursor-pointer appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-md checked:bg-[#0D5CD7] ring-1 ring-[#0D5CD7]"
 									/>
 									<span>Price : High to Low</span>
 								</label>
 							</Collapsible>
 						</form>
-						<div className="lg:w-3xl md:w-xl sm:w-lg flex flex-col bg-white py-8 px-4 sm:p-8 gap-[30px] h-fit border border-[#E5E5E5] rounded-[30px]">
+						<div className="lg:w-3xl md:w-xl flex flex-col bg-white py-8 px-4 sm:p-8 gap-[30px] h-fit border border-[#E5E5E5] rounded-[30px]">
 							<h2 className="font-bold text-2xl leading-[34px]">Products</h2>
 							{loading && (
 								<div className="flex items-center justify-center">
