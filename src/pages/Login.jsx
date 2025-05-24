@@ -60,9 +60,6 @@ export default function Login() {
 							onChange={(e) => setEmail(e.target.value)}
 							icon={IconEmail}
 						/>
-						{/* <div className="flex flex-col gap-[10px]">
-							
-						</div> */}
 						<InputPassword
 							placeholder="Write your password"
 							value={password}

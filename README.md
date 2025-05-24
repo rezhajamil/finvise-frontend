@@ -60,3 +60,11 @@ To run tests, run the following command
 ```bash
   npm run test
 ```
+
+### 🚀 Build for Production
+
+```bash
+npm run build
+```
+
+Deploy the contents of the `dist` folder to your hosting platform.
