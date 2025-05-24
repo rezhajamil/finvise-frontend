@@ -10,7 +10,7 @@ const Collapsible = ({ title, children, defaultOpen = true }) => {
 			<button
 				type="button"
 				onClick={() => setIsOpen(!isOpen)}
-				className="flex items-center justify-between w-full md:hidden "
+				className="flex items-center justify-between w-full md:hidden"
 			>
 				<p className="font-bold text-lg sm:text-2xl leading-[34px]">{title}</p>
 				<img
@@ -23,10 +23,10 @@ const Collapsible = ({ title, children, defaultOpen = true }) => {
 				className={`grid transition-all duration-300 ease-in-out ${
 					isOpen
 						? "grid-rows-[1fr] opacity-100 h-full"
-						: "grid-rows-[0fr] opacity-0 h-0"
+						: "grid-rows-[0fr] opacity-0 h-0 md:grid-rows-[1fr] md:opacity-100 md:h-full"
 				}`}
 			>
-				<div className={`space-y-4 ${isOpen ? "block" : "hidden"}`}>
+				<div className={`space-y-4 ${isOpen ? "block " : "hidden md:block"}`}>
 					{children}
 				</div>
 			</div>

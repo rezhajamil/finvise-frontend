@@ -27,11 +27,9 @@ export default function Login() {
 		}
 		try {
 			const res = await API.post("/login", { email, password });
-			console.log(res);
 			login(res.data.access_token);
 			navigate("/");
 		} catch (err) {
-			console.log(err);
 			setError("Login failed. Please check your credentials.");
 		}
 	};
