@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import API from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
@@ -9,6 +9,7 @@ import Button from "../components/Button";
 import ButtonLink from "../components/ButtonLink";
 import InputText from "../components/InputText";
 import InputPassword from "../components/InputPassword";
+import Navbar from "../parts/Navbar";
 export default function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -26,11 +27,9 @@ export default function Login() {
 		}
 		try {
 			const res = await API.post("/login", { email, password });
-			console.log(res);
 			login(res.data.access_token);
 			navigate("/");
 		} catch (err) {
-			console.log(err);
 			setError("Login failed. Please check your credentials.");
 		}
 	};
@@ -39,8 +38,9 @@ export default function Login() {
 		<>
 			<div
 				id="signin"
-				className="bg-[#EFF3FA] min-h-screen pt-[30px] pb-[50px] flex flex-col"
+				className="bg-[#EFF3FA] min-h-screen pt-[30px] pb-[50px] flex flex-col px-4"
 			>
+				<Navbar />
 				<div className="container max-w-[1130px] mx-auto flex flex-1 items-center justify-center py-5 px-2">
 					<form
 						onSubmit={handleLogin}

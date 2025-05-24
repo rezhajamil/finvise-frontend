@@ -16,15 +16,15 @@ const useProductStore = create((set, get) => ({
 
 		try {
 			const res = await API.get("/products", { params });
-			console.log({ res });
 			set((state) => ({
 				products: {
 					...state.products,
 					[key]: res.data,
 				},
 			}));
+
+			console.log(get().products);
 		} catch (err) {
-			console.log(err.response.data.message);
 			set({ error: "Failed to fetch products" });
 		} finally {
 			set({ loading: false });

@@ -11,8 +11,9 @@ import useAuthStore from "./store/useAuthStore";
 import { useEffect } from "react";
 import Register from "./pages/Register";
 import { history } from "./utils/redirect";
+import GuestOnlyRoute from "./components/GuestOnlyRoute";
 function App() {
-	const { token, logout, fetchUser } = useAuthStore();
+	const { token, fetchUser } = useAuthStore();
 
 	useEffect(() => {
 		if (token) {
@@ -22,14 +23,23 @@ function App() {
 
 	return (
 		<Router history={history}>
-			{token && (
-				<div style={{ textAlign: "right", padding: "1rem" }}>
-					<button onClick={logout}>Logout</button>
-				</div>
-			)}
 			<Routes>
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
+				<Route
+					path="/register"
+					element={
+						<GuestOnlyRoute>
+							<Register />
+						</GuestOnlyRoute>
+					}
+				/>
+				<Route
+					path="/login"
+					element={
+						<GuestOnlyRoute>
+							<Login />
+						</GuestOnlyRoute>
+					}
+				/>
 				<Route path="/products" element={<Products />} />
 				<Route
 					path="/products/:id"

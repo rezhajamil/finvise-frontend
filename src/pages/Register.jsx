@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import API from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
@@ -10,6 +10,7 @@ import Button from "../components/Button";
 import ButtonLink from "../components/ButtonLink";
 import InputText from "../components/InputText";
 import InputPassword from "../components/InputPassword";
+import Navbar from "../parts/Navbar";
 export default function Register() {
 	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
@@ -43,11 +44,9 @@ export default function Register() {
 				password,
 				password_confirmation: confirmPassword,
 			});
-			console.log(res);
 			login(res.data.access_token);
 			navigate("/");
 		} catch (err) {
-			console.log(err.response.data);
 			if (err.response?.data) {
 				const errors = err.response.data;
 
@@ -56,7 +55,7 @@ export default function Register() {
 				if (errors.email) setEmailError(errors.email[0]);
 				if (errors.password) setPasswordError(errors.password[0]);
 			} else {
-				setError("Terjadi kesalahan. Silakan coba lagi.");
+				setError("Sign up failed. Please try again.");
 			}
 		}
 	};
@@ -67,6 +66,7 @@ export default function Register() {
 				id="signup"
 				className="bg-[#EFF3FA] min-h-screen pt-[30px] pb-[50px] flex flex-col"
 			>
+				<Navbar />
 				<div className="container max-w-[1130px] mx-auto flex flex-1 items-center justify-center py-5 px-2">
 					<form
 						onSubmit={handleLogin}
